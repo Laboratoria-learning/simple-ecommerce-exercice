@@ -1,3 +1,6 @@
+let counterItems = document.getElementById("counterItems");
+let counter = parseInt(counterItems.innerText);
+
 function drawProducts(data) {
   let products = data.products;
   let productsContainer = document.getElementById("products-container");
@@ -13,10 +16,8 @@ function createProductHTML(product) {
     <img src='${product.imageUrl}' alt='${product.description}'/>
     <p>${product.description}</p>
     <button data-product-id=${product.id}
-      onclick="addToCart(${product.id})"
-      class='btn btn-primary'>
-        Agregar a carrito
-      </button>
+      onclick="changeButtonStatus(${product.id}, event)"
+      class='btn btn-primary'>Agregar a carrito</button>
     <hr/>
   `;
   let productContainer = document.createElement("div");
@@ -28,6 +29,8 @@ function createProductHTML(product) {
 drawProducts(data);
 
 function addToCart() {
+  // console.log(event);
+  // console.log(event.target);
   /* cuando agrego a carrito, tengo que:
   1) Incrementar en uno mi contador del menu
   2) Guardar mi producto en algun lugar
@@ -48,14 +51,31 @@ function removeFromCart() {
 function increaseCounter() {
   /* como accedemos al HTML del contador
   y como lo incrementamos*/
+  counter += 1;
+  counterItems.innerText = counter;
+  console.log(counter);
+  addToCart();
 }
 
 function decreaseCounter() {
   /* como accedemos al HTML del contador
   y como lo incrementamos*/
+  counter -= 1;
+  counterItems.innerText = counter;
+  console.log(counter);
 }
 
-function changeButtonStatus(button) {
+function changeButtonStatus(product, event) {
+  let element = event.target
+  let buttonText = element.firstChild.data;
+
+  if(buttonText === "Agregar a carrito") {
+    element.innerText = "Remover del carrito";
+    increaseCounter();
+  } else {
+    element.innerText = "Agregar a carrito";
+    decreaseCounter();
+  }
   /* esta funcion deberia recibir un boton y
   cambiar su estatus
     Si el boton esta en agregar al carrito
