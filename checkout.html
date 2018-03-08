@@ -23,7 +23,7 @@
           <li class="nav-item">
             <a class="nav-link" href="#">
               <i class="fas fa-shopping-cart"></i>
-              <span id="counterItems" class="badge badge-info">0</span>
+              <span id="counter-items" class="badge badge-info">0</span>
             </a>
           </li>
           <li class="nav-item">
@@ -42,24 +42,16 @@
 
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <th scope="row">Play 3</th>
-            <td>3600</td>
-          </tr>
-
-          <tr>
-            <th scope="row">Play 2</th>
-            <td>1000</td>
-          </tr>
-
+        <tbody id="products-container">
+          
           <tr>
             <td></td>
             <td></td>
-            <td>4600</td>
+            <td id="sum-of-products">4600</td>
           </tr>
         </tbody>
       </table>
       <script src="js/checkout.js"></script>
+      <script src="js/data.js"></script>
   </body>
 </html>
