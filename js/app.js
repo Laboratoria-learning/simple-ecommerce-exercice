@@ -26,8 +26,8 @@ function createProductHTML(product) {
 drawProducts(data);
 
 function addToCart(product, event) {
-  console.log(event);
-  console.log(event.target);
+  // console.log(event);
+  // console.log(event.target);
   changeButtonStatus(event.target);
   /* cuando agrego a carrito, tengo que:
   1) Incrementar en uno mi contador del menu
