@@ -1,9 +1,9 @@
 function drawProducts(data) {
-  let products = data.products;
-  let productsContainer = document.getElementById("products-container");
-  products.forEach((product, index) => {
-    let productHTML = createProductHTML(product);
-    productsContainer.appendChild(productHTML);
+  let products = data.products;//guardar el array de products
+  let productsContainer = document.getElementById("products-container");//seleccionar div que va a contener los productos
+  products.forEach((product, index) => {//recorrer el arreglo de products
+    let productHTML = createProductHTML(product); //declarar un producto que llama a la funcion crear producto 
+    productsContainer.appendChild(productHTML);//agregar al contenedor en html
   });
 }
 
@@ -27,14 +27,32 @@ function createProductHTML(product) {
 
 drawProducts(data);
 
-function addToCart() {
-  /* cuando agrego a carrito, tengo que:
-  1) Incrementar en uno mi contador del menu
-  2) Guardar mi producto en algun lugar
+const productsInCart = [];
+
+function addToCart(productId) {
+
+  productsInCart.push(productId); //se van almacenando los productos elegidos
+  localStorage.setItem("productsInCart", JSON.stringify(productsInCart));
+  const productsToBuy = JSON.parse(localStorage.getItem("productsInCart"));
+  console.log(productsToBuy);
+  
+  /* cuando agrego a carrito, tengo que:*/
+  //1) Incrementar en uno mi contador del menu
+  const counter = document.getElementById("counterItems"); //seleccionando contador
+  const productsInCounter = productsToBuy.length;
+
+  console.log(productsInCounter);
+
+
+  /*2) Guardar mi producto en algun lugar
   3) Cambiar el boton de agregar a carrito
   por quitar del carrito
   */
 }
+
+
+
+
 
 function removeFromCart() {
   /* cuando agrego a carrito, tengo que:
@@ -46,9 +64,11 @@ function removeFromCart() {
 }
 
 function increaseCounter() {
+
   /* como accedemos al HTML del contador
   y como lo incrementamos*/
 }
+
 
 function decreaseCounter() {
   /* como accedemos al HTML del contador
@@ -63,3 +83,4 @@ function changeButtonStatus(button) {
     Y viceversa
   */
 }
+
