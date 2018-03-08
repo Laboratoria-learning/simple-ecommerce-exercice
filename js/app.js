@@ -35,13 +35,12 @@ function addToCart(productId) {
   localStorage.setItem("productsInCart", JSON.stringify(productsInCart));
   const productsToBuy = JSON.parse(localStorage.getItem("productsInCart"));
   console.log(productsToBuy);
-  
+
   /* cuando agrego a carrito, tengo que:*/
   //1) Incrementar en uno mi contador del menu
   const counter = document.getElementById("counterItems"); //seleccionando contador
-  const productsInCounter = productsToBuy.length;
-
-  console.log(productsInCounter);
+  const productsInCounter = productsToBuy.length; //contar elements en localstorage
+  counter.innerHTML = productsInCounter;
 
 
   /*2) Guardar mi producto en algun lugar
