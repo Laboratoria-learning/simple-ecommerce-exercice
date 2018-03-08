@@ -1,3 +1,6 @@
+let counterItems = document.getElementById("counterItems");
+let counter = parseInt(counterItems.innerText);
+
 function drawProducts(data) {
   let products = data.products;
   let productsContainer = document.getElementById("products-container");
@@ -13,7 +16,7 @@ function createProductHTML(product) {
     <img src='${product.imageUrl}' alt='${product.description}'/>
     <p>${product.description}</p>
     <button data-product-id=${product.id}
-      onclick="addToCart(${product.id}, event)"
+      onclick="changeButtonStatus(${product.id}, event)"
       class='btn btn-primary'>Agregar a carrito</button>
     <hr/>
   `;
@@ -25,11 +28,9 @@ function createProductHTML(product) {
 
 drawProducts(data);
 
-function addToCart(product, event) {
+function addToCart() {
   // console.log(event);
   // console.log(event.target);
-  changeButtonStatus(event.target);
-  increaseCounter();
   /* cuando agrego a carrito, tengo que:
   1) Incrementar en uno mi contador del menu
   2) Guardar mi producto en algun lugar
@@ -50,30 +51,29 @@ function removeFromCart() {
 function increaseCounter() {
   /* como accedemos al HTML del contador
   y como lo incrementamos*/
-  let counterItems = document.getElementById("counterItems");
-  let counter = parseInt(counterItems.innerText);
   counter += 1;
   counterItems.innerText = counter;
   console.log(counter);
+  addToCart();
 }
 
 function decreaseCounter() {
   /* como accedemos al HTML del contador
   y como lo incrementamos*/
-  let counterItems = document.getElementById("counterItems");
-  let counter = parseInt(counterItems.innerText);
   counter -= 1;
   counterItems.innerText = counter;
   console.log(counter);
 }
 
-function changeButtonStatus(button) {
-  let buttonText = button.firstChild.data;
+function changeButtonStatus(product, event) {
+  let element = event.target
+  let buttonText = element.firstChild.data;
 
   if(buttonText === "Agregar a carrito") {
-    button.innerText = "Remover del carrito";
+    element.innerText = "Remover del carrito";
+    increaseCounter();
   } else {
-    button.innerText = "Agregar a carrito";
+    element.innerText = "Agregar a carrito";
     decreaseCounter();
   }
   /* esta funcion deberia recibir un boton y
