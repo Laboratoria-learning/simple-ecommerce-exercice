@@ -2,6 +2,10 @@ const productsToBuy = JSON.parse(localStorage.getItem("productsInCart"));
 let productsInCartContainer = document.getElementById("products-container");
 let sumOfProducts = 0; 
 
+const counter = productsToBuy.length;
+const counterBox = document.getElementById("counter-items");
+counterBox.innerText = counter;
+
 function calculateTotal(productsToBuy) {
   
   productsToBuy.forEach(element => {

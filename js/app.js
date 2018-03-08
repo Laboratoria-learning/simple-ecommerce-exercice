@@ -36,6 +36,8 @@ function addToCart(productId) {
     productsInCart.push(product); //se van almacenando los productos elegidos
     localStorage.setItem("productsInCart", JSON.stringify(productsInCart));
 
+    increaseCounter();
+
   /* cuando agrego a carrito, tengo que:*/
   //1) Incrementar en uno mi contador del menu
   // const counter = document.getElementById("counterItems"); //seleccionando contador
@@ -71,14 +73,11 @@ function removeFromCart(productId) {
 // let counter = productsAddedToCart.length;
 
 function increaseCounter() {
-
+  const counter = JSON.parse(localStorage.getItem("productsInCart")).length;
   const counterBox = document.getElementById("counter-items");
- 
-  // counterBox.innerHTML = counter;
-  // /* como accedemos al HTML del contador
-  // y como lo incrementamos*/
+  counterBox.innerText = counter;
 }
-increaseCounter();
+
 
 function decreaseCounter() {
   
