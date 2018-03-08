@@ -44,3 +44,15 @@ var data = {
     }
   ]
 };
+
+data.products.push(
+  {
+    imageUrl: "http://dummyimage.com/100x100",
+    title: "Prueba",
+    description: "Yes",
+    id: 1,
+    price: 700
+  }
+);
+
+console.log(data);
