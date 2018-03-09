@@ -12,7 +12,8 @@ function calculateTotal(productsToBuy) {
     const nameOfProduct =element.title;
     const priceOfProduct = element.price;
     sumOfProducts += priceOfProduct;
-    var newProductinCart = `
+
+    let newProductinCart = `
       <th scope="row">${nameOfProduct}</th>
       <td>${priceOfProduct}</td>
     `
@@ -26,3 +27,46 @@ function calculateTotal(productsToBuy) {
 
 calculateTotal(productsToBuy);
 
+//PAYPAL
+          paypal.Button.render({
+
+              env: 'sandbox', // sandbox | production
+
+              // PayPal Client IDs - replace with your own
+              // Create a PayPal app: https://developer.paypal.com/developer/applications/create
+              client: {
+                  sandbox:    'AdzmmdNEMWGMcLSMZkvlSV1w7mK6QK7-jOIvAjAGs1F9n-pz8eVJQsJFwByJgirDJebFwgs1tSYhztDh',
+                  production: 'Ae1tHobzb78LnBOmYn9dPi77LCf-UbYjEUw1iKVAn648u0x47bRYFCik56MRbbjF1UnF0mjbkqMxHhmf'
+              },
+
+              // Show the buyer a 'Pay Now' button in the checkout flow
+              commit: true,
+
+              // payment() is called when the button is clicked
+              payment: function(data, actions) {
+
+                  // Make a call to the REST api to create the payment
+                  return actions.payment.create({
+                      payment: {
+                          transactions: [
+                              {
+                                  amount: { total: sumOfProducts , currency: 'MXN' }
+                              }
+                          ]
+                      }
+                  });
+              },
+
+              // onAuthorize() is called when the buyer approves the payment
+              onAuthorize: function(data, actions) {
+
+                  // Make a call to the REST api to execute the payment
+                  return actions.payment.execute().then(function(dataPayment) {
+                        console.log(dataPayment.payer);
+                      
+                  });
+              }
+
+          }, '#paypal-button-container');
+
+    

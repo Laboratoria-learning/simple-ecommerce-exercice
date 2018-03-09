@@ -31,32 +31,14 @@ function createProductHTML(product) {
 //Aqui termina funcion de pintar productos en la tienda 
 let productsInCart = [];
 
-function addToCart(productId) {
-    let product = data.products[productId];
+function addToCart(btnId) {
+    let product = data.products[btnId];
     productsInCart.push(product); //se van almacenando los productos elegidos
     localStorage.setItem("productsInCart", JSON.stringify(productsInCart));
-
     increaseCounter();
-
-  /* cuando agrego a carrito, tengo que:*/
-  //1) Incrementar en uno mi contador del menu
-  // const counter = document.getElementById("counterItems"); //seleccionando contador
-  // const productsInCounter = productsToBuy.length; //contar elements en localstorage
-  // counter.innerHTML = productsInCounter;
-
-
-  /*2) Guardar mi producto en algun lugar
-  3) Cambiar el boton de agregar a carrito
-  por quitar del carrito
-  */
-  // let btnAgregarToQuitar = event.target;
-  // btnAgregarToQuitar.innerHTML = "Quitar del carrito";
-  
 }
 
-
 function removeFromCart(productId) {
-
   //productsInCart[0];
   productsInCart.pop(productId); //se van almacenando los productos elegidos
     localStorage.removeItem("productsInCart", JSON.stringify(productsInCart));
@@ -68,9 +50,6 @@ function removeFromCart(productId) {
   */
   decreaseCounter();
 }
-
-
-// let counter = productsAddedToCart.length;
 
 function increaseCounter() {
   const counter = JSON.parse(localStorage.getItem("productsInCart")).length;
