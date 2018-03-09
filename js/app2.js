@@ -68,13 +68,17 @@ function increaseCounter() {
   let counter2 = document.getElementById("counterItems");
   counter += 1
   counter2.innerHTML = counter;
+  saveItemsCounter(counter)
 }
+
+
 
 function decreaseCounter() {
   let counter = parseInt(document.getElementById("counterItems").textContent);
   let counter2 = document.getElementById("counterItems");
   counter -= 1
   counter2.innerHTML = counter;
+saveItemsCounter(counter)
 }
 
 function changeButtonStatus(button,boolean) {
@@ -86,3 +90,7 @@ function changeButtonStatus(button,boolean) {
     button.classList.toggle("clicked");
   }
 }
+
+ function saveItemsCounter (counter) {
+  localStorage.setItem("saveProducts", counter);
+ }

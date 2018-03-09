@@ -42,8 +42,6 @@ function addToCart(eventTrigger, ItemID) {
 
 shoppingCart = [];
 
-
-
 function addProduct(productId) {
   (data.products).forEach(product => {
     if (productId === product.id) {
@@ -70,7 +68,6 @@ function increaseCounter(eventTrigger) {
   counterNumber += 1
   saveCounter(counterNumber);
   counter.innerHTML = counterNumber;
-
 }
 
 function decreaseCounter(eventTrigger) {
@@ -80,6 +77,8 @@ function decreaseCounter(eventTrigger) {
   counterNumber -= 1
   saveCounter(counterNumber);
   counter.innerHTML = counterNumber;
+
+    localStorage.setItem("saveCounter",counter);
 }
 
 function changeButtonStatus(condition, eventTrigger) {
