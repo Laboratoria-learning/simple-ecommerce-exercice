@@ -8,5 +8,5 @@ function totalItems() {
   console.log(jsonProducts);
 
 }
-
+// comentario
 totalItems();
